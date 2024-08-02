@@ -24,3 +24,7 @@ logs
 
 # Environment variables
 .env*
+
+# Prisma
+*.db
+*.db-jorunal
