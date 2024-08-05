@@ -30,6 +30,7 @@ model Technician {
   id Int @id @default(autoincrement())
   name String
   lastName String
+  enabled Boolean @default(true)
   assignments Assignment[]
 }
 
