@@ -1,11 +1,10 @@
 import express, { json } from 'express'
-import { errorHandler } from './middlewares/errorHandler'
+import productRoutes from './routes/products'
 
-const server = express()
+const app = express()
 
-server.use(json())
+app.use(json())
 
+app.use('/api/v1/products', productRoutes)
 
-server.use(errorHandler)
-
-export default server
+export default app

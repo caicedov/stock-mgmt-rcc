@@ -27,4 +27,7 @@ logs
 
 # Prisma
 *.db
-*.db-jorunal
+*.db-journal
+
+# Dist
+dist/
