@@ -6,6 +6,7 @@ import {
   getTechnicians,
   updateTechnician
 } from '../controllers/technicianController'
+import { authenticateToken, authorizeAdmin } from '../middleware/auth'
 import {
   createTechnicianValidator,
   updateTechnicianValidator
@@ -13,10 +14,10 @@ import {
 
 const router = Router()
 
-router.post('/', createTechnicianValidator, createTechnician)
+router.post('/', authenticateToken, authorizeAdmin, createTechnicianValidator, createTechnician)
 router.get('/', getTechnicians)
 router.get('/:id', getTechnicianById)
-router.put('/:id', updateTechnicianValidator, updateTechnician)
-router.put('/:id/disable', disableTechnician)
+router.put('/:id', authenticateToken, authorizeAdmin, updateTechnicianValidator, updateTechnician)
+router.put('/:id/disable', authenticateToken, authorizeAdmin, disableTechnician)
 
 export default router

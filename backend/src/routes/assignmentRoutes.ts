@@ -10,10 +10,11 @@ import {
 import {
   createAssignmentValidator
 } from '../validators/assignmentValidators'
+import { authenticateToken, authorizeAdmin } from '../middleware/auth'
 
 const router = Router()
 
-router.post('/', createAssignmentValidator, createAssignment)
+router.post('/',  authenticateToken, authorizeAdmin, createAssignmentValidator, createAssignment)
 router.get('/', getAssignments)
 router.get('/:id', getAssignmentsById)
 router.get('/product/:productId', getAssignmentsByProductId)

@@ -28,6 +28,8 @@ logs
 # Prisma
 *.db
 *.db-journal
+seed.ts
 
 # Dist
 dist/
+backend/prisma/seed.ts

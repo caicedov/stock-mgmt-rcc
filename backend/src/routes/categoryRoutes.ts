@@ -5,6 +5,7 @@ import {
   getCategoryById,
   updateCategory
 } from '../controllers/categoryController'
+import { authenticateToken, authorizeAdmin } from '../middleware/auth'
 import {
   createCategoryValidator,
   updateCategoryValidator
@@ -12,9 +13,9 @@ import {
 
 const router = Router()
 
-router.post('/', createCategoryValidator, createCategory)
+router.post('/', authenticateToken, authorizeAdmin, createCategoryValidator, createCategory)
 router.get('/', getCategories)
 router.get('/:id', getCategoryById)
-router.put('/:id', updateCategoryValidator, updateCategory)
+router.put('/:id', authenticateToken, authorizeAdmin, updateCategoryValidator, updateCategory)
 
 export default router
