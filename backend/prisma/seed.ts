@@ -42,12 +42,52 @@ async function main() {
       name: 'Ferretería'
     }
   })
+  const tech1 = await prisma.technician.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      id: 1,
+      name: "David",
+      lastName: "Parra"
+    }
+  })
+  const tech2 = await prisma.technician.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      id: 2,
+      name: "Herman",
+      lastName: "Alcayaga"
+    }
+  })
+  const tech3 = await prisma.technician.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
+      id: 3,
+      name: "Esteban",
+      lastName: "Flores"
+    }
+  })
+  const tech4 = await prisma.technician.upsert({
+    where: { id: 4 },
+    update: {},
+    create: {
+      id: 4,
+      name: "Sebastian",
+      lastName: "Aguilera"
+    }
+  })
   console.log({
     dth,
     fibra,
     dgo,
     hughesnet,
-    ferreteria
+    ferreteria,
+    tech1,
+    tech2,
+    tech3,
+    tech4
   })
 }
 
