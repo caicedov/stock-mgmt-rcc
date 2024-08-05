@@ -5,18 +5,22 @@ import authRoutes from './routes/authRoutes'
 import categoryRoutes from './routes/categoryRoutes'
 import productRoutes from './routes/products'
 import technicianRoutes from './routes/technicianRoutes'
+import userRoutes from './routes/userRoutes'
 
 const app = express()
 
 app.use(json())
-app.use('/api/v1', authRoutes)
+app.use('/api', authRoutes)
 
-app.use('/api/v1/products', productRoutes)
-app.use('/api/v1/assignments', assignmentRoutes)
-app.use('/api/v1/categories', categoryRoutes)
-app.use('/api/v1/technicians', technicianRoutes)
+// Public routes
+app.use('/api/products', productRoutes)
+app.use('/api/assignments', assignmentRoutes)
+app.use('/api/categories', categoryRoutes)
+app.use('/api/technicians', technicianRoutes)
 
+// Protected routes
 app.use(authenticateToken)
-app.use('/api/v1', authorizeAdmin)
+app.use('/api', authorizeAdmin)
+app.use('/api/users', userRoutes)
 
 export default app

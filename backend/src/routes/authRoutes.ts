@@ -5,6 +5,25 @@ import prisma from '../prisma/client'
 
 const router = Router()
 
+router.post('/register', async (req, res) => {
+  const { username, password } = req.body
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const newUser = await prisma.user.create({
+      data: {
+        username,
+        password: hashedPassword,
+        role: 'user'
+      }
+    })
+    res.status(201).json(newUser)
+  } catch (error) {
+    res.status(500).json({
+      error: 'An error occurred while creating the user'
+    })
+  }
+})
+
 router.post('/login', async (req, res) => {
   const { username, password } = req.body
   const user = await prisma.user.findUnique({ where: { username } })
